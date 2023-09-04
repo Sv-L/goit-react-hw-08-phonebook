@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilter } from 'redux/filter/slice';
 import { getContacts } from 'redux/contacts/selectors';
 import { deleteContact } from 'redux/contacts/operations';
-// import IconButton from '@mui/material/IconButton';
-// import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const ContactList = () => {
   const contacts = useSelector(getContacts);
@@ -27,20 +27,20 @@ const ContactList = () => {
         <li className={css['contacts-item']} key={id}>
           <p className={css['contacts-name']}>{name}</p>
           <p className={css['contacts-number']}>{number}</p>
-          <button
+          {/* <button
             type="button"
             className={css['delete-btn']}
             onClick={() => dispatch(deleteContact(id))}
           >
             X
-          </button>
-          {/* <IconButton
+          </button> */}
+          <IconButton
             aria-label="delete"
-            color="primary"
+            color="secondary"
             onClick={() => dispatch(deleteContact(id))}
           >
             <DeleteIcon />
-          </IconButton> */}
+          </IconButton>
         </li>
       ))}
     </ul>

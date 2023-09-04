@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
-import { Form, Input, Label, LoginBtn } from './Login.styled';
+import { Form } from './Login.styled';
+
+import { Box, TextField, Button, Paper } from '@mui/material';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import KeyIcon from '@mui/icons-material/Key';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -39,32 +43,54 @@ const Login = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmitForm}>
-        <Label>
-          mail
-          <Input
-            type="email"
-            name="email"
-            placeholder="sophie@example.com"
-            onChange={handleInputChange}
-            required
-          />
-        </Label>
-        <Label>
-          password
-          <Input
-            type="password"
-            name="password"
-            onChange={handleInputChange}
-            required
-          />
-        </Label>
-        <LoginBtn type="submit">sing in</LoginBtn>
-      </Form>
-
-      <Link to="/register">Don't have an account? Sign Up</Link>
+      <Paper
+        elevation={16}
+        sx={{
+          margin: '0 auto',
+          padding: '20px',
+          width: '400px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <Form onSubmit={handleSubmitForm}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <AlternateEmailIcon sx={{ color: 'action.active', mr: 2, my: 1 }} />
+            <TextField
+              fullWidth
+              label="Email"
+              variant="standard"
+              type="email"
+              name="email"
+              onChange={handleInputChange}
+              required
+            />
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <KeyIcon sx={{ color: 'action.active', mr: 2, my: 1 }} />
+            <TextField
+              fullWidth
+              label="Password"
+              variant="standard"
+              type="password"
+              name="password"
+              onChange={handleInputChange}
+              required
+            />
+          </Box>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            sx={{ marginTop: '20px' }}
+          >
+            sing in
+          </Button>
+        </Form>
+      </Paper>
     </>
   );
 };
-
 export default Login;

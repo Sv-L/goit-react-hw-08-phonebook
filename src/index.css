@@ -32,16 +32,17 @@ h1 {
   margin-bottom: 20px;
   text-shadow: 10px 5px 5px rgba(0, 0, 0, 0.4);
 }
-h2 {
-  margin-bottom: 15px;
-  text-align: center;
-  color: white;
-  text-shadow: 10px 5px 5px rgba(0, 0, 0, 0.4);
-}
+/* h2 { */
+/* margin-bottom: 15px; */
+/* text-align: center; */
+/* color: white; */
+/* text-shadow: 10px 5px 5px rgba(0, 0, 0, 0.4); */
+/* } */
+
 #root {
   padding: 20px;
   min-height: 100vh;
-  background-color: darkred;
+  /* background-color: darkred; */
   overflow: no-scroll;
 }
 

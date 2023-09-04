@@ -1,4 +1,5 @@
-import AppBar from 'components/AppBar/AppBar';
+import NavigationBar from 'components/NavigationBar';
+// import ResponsiveAppBar from 'components/Bar';
 import Loader from 'components/Loader';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -9,7 +10,8 @@ const Layout = () => {
   return (
     <>
       <header>
-        <AppBar />
+        <NavigationBar />
+        {/* <ResponsiveAppBar /> */}
       </header>
       <Suspense fallback={<Loader />}>
         <main>

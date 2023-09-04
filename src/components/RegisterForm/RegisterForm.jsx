@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { register } from 'redux/auth/operations';
-import { Form, Input, Label, SingUp } from './RegisterForm.styled';
+import { Form } from './RegisterForm.styled';
+import { Box, TextField, Button, Paper } from '@mui/material';
+
+import PersonIcon from '@mui/icons-material/Person';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import KeyIcon from '@mui/icons-material/Key';
+
 const RegisterForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -48,45 +53,64 @@ const RegisterForm = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmitForm}>
-        <Label>
-          name
-          <Input
-            type="text"
-            name="name"
-            value={name}
-            placeholder="Sophie"
-            required
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Label>
-          mail
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="sophie@example.com"
-            required
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Label>
-          password
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={handleInputChange}
-          />
-        </Label>
-        <SingUp type="submit">sing up</SingUp>
-      </Form>
-      <p>
-        if you have just registered, go to{' '}
-        <Link to="/login">the login page</Link>
-      </p>
+      <Paper
+        elevation={16}
+        sx={{
+          margin: '0 auto',
+          padding: '20px',
+          width: '400px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <Form onSubmit={handleSubmitForm}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <PersonIcon sx={{ color: 'action.active', mr: 2, my: 1 }} />
+            <TextField
+              fullWidth
+              label="Name"
+              variant="standard"
+              type="text"
+              name="name"
+              required
+            />
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <AlternateEmailIcon sx={{ color: 'action.active', mr: 2, my: 1 }} />
+            <TextField
+              fullWidth
+              label="Email"
+              variant="standard"
+              type="email"
+              name="email"
+              onChange={handleInputChange}
+              required
+            />
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+            <KeyIcon sx={{ color: 'action.active', mr: 2, my: 1 }} />
+            <TextField
+              fullWidth
+              label="Password"
+              variant="standard"
+              type="password"
+              name="password"
+              onChange={handleInputChange}
+              required
+            />
+          </Box>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            sx={{ marginTop: '20px' }}
+          >
+            sing up
+          </Button>
+        </Form>
+      </Paper>
     </>
   );
 };
