@@ -1,5 +1,6 @@
 import Login from 'components/Login';
-import { Typography, Link } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   return (
@@ -12,7 +13,10 @@ const LoginPage = () => {
       </Typography>
       <Login />
       <Typography align="center" mt={2}>
-        Don't have an account? <Link href="/register"> Sign Up</Link>
+        Don't have an account?{' '}
+        <Link to="/register" sx={{ color: '#1976d2' }}>
+          Sign Up
+        </Link>
       </Typography>
     </>
   );

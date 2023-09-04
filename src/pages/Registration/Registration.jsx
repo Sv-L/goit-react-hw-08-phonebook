@@ -1,6 +1,6 @@
 import RegisterForm from 'components/RegisterForm';
-// import { Link } from 'react-router-dom';
-import { Typography, Link } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Registration = () => {
   return (
@@ -14,7 +14,9 @@ const Registration = () => {
       <RegisterForm />
       <Typography align="center" mt={2}>
         if you have just registered, go to{' '}
-        <Link href="/login">the login page</Link>
+        <Link to="/login" style={{ color: '#1976d2' }}>
+          the login page
+        </Link>
       </Typography>
     </>
   );
