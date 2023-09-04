@@ -1,18 +1,11 @@
-import { ListItem, ListItemText, Box } from '@mui/material';
+import { Box } from '@mui/material';
+import { Link } from './AuthNav.styled';
 
 const AuthNav = () => {
-  function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  }
-
   return (
     <Box sx={{ marginLeft: 'auto', display: 'flex' }}>
-      <ListItemLink href="/register">
-        <ListItemText primary="Registration" />
-      </ListItemLink>
-      <ListItemLink href="/login">
-        <ListItemText primary="Login" />
-      </ListItemLink>
+      <Link to="/register">Registration</Link>
+      <Link to="/login">Login</Link>
     </Box>
   );
 };
