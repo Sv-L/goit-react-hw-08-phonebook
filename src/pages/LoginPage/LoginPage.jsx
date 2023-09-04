@@ -14,7 +14,7 @@ const LoginPage = () => {
       <Login />
       <Typography align="center" mt={2}>
         Don't have an account?{' '}
-        <Link to="/register" sx={{ color: '#1976d2' }}>
+        <Link to="/register" style={{ color: '#1976d2' }}>
           Sign Up
         </Link>
       </Typography>
