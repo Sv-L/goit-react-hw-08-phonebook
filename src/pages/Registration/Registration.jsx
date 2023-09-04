@@ -14,7 +14,7 @@ const Registration = () => {
       <RegisterForm />
       <Typography align="center" mt={2}>
         if you have just registered, go to{' '}
-        <Link href="/login">the login page</Link>
+        <Link href="goit-react-hw-08-phonebook/login">the login page</Link>
       </Typography>
     </>
   );
