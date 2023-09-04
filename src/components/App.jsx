@@ -26,9 +26,9 @@ export const App = () => {
           <Route index element={<Home />} />
 
           <Route
-            path="/register"
+            path="register"
             element={
-              <PublicRoute redirectTo="/contacts" restricted>
+              <PublicRoute redirectTo="contacts" restricted>
                 <Registration />
               </PublicRoute>
             }
