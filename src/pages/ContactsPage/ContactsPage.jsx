@@ -40,7 +40,6 @@ const ContactsPage = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#34aadc',
           }}
         >
           <Filter />
