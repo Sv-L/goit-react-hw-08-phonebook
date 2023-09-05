@@ -30,6 +30,7 @@ const ContactForm = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          width: '490px',
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
