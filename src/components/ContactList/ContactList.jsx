@@ -62,10 +62,9 @@ const ContactList = () => {
           </Typography>
           <IconButton
             aria-label="delete"
-            color="primary"
             onClick={() => dispatch(deleteContact(id))}
           >
-            <DeleteIcon />
+            <DeleteIcon sx={{ fill: 'none', stroke: '#3498db' }} />
           </IconButton>
         </ListItem>
       ))}
