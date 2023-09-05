@@ -42,7 +42,7 @@ const ContactForm = () => {
               if (!values.name) {
                 errors.name = 'Name is required';
               } else if (
-                !/^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/.test(
+                !/^[a-zA-Zа-яА-Я]+([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*$/.test(
                   values.name
                 )
               ) {
