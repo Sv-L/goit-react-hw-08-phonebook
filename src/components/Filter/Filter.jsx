@@ -1,6 +1,7 @@
-import css from './Filter.module.css';
 import { useDispatch } from 'react-redux';
 import { update } from 'redux/filter/slice';
+import { InputLabel, OutlinedInput, InputAdornment } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -11,18 +12,28 @@ const Filter = () => {
   };
 
   return (
-    <label className={css.label}>
-      Find contacts by name
-      <input
-        className={css.input}
+    <>
+      <InputLabel htmlFor="outlined-adornment-amount">
+        Find contacts by name
+      </InputLabel>
+      <OutlinedInput
+        sx={{
+          width: '640px',
+          backgroundColor: '#fff',
+          marginBottom: '15px',
+          marginTop: '10px',
+        }}
         type="text"
         name="filter"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
         onChange={onChangeFilter}
-      ></input>
-    </label>
+        startAdornment={
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        }
+        labelwidth={60}
+      />
+    </>
   );
 };
 export default Filter;

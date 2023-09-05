@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/operations';
 import { getError, getIsLoading } from 'redux/contacts/selectors';
+import { Paper } from '@mui/material';
 
 const ContactsPage = () => {
   const isLoading = useSelector(getIsLoading);
@@ -19,15 +20,33 @@ const ContactsPage = () => {
 
   return (
     <>
-      <h1>Phonebook</h1>
-      <div className="wrap">
+      <Paper
+        elevation={16}
+        sx={{
+          margin: '0 auto',
+          padding: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'start',
+        }}
+      >
         <ContactForm />
-        <div>
-          <h2>Contacts</h2>
+        <Paper
+          elevation={16}
+          sx={{
+            margin: '0 auto',
+            padding: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#34aadc',
+          }}
+        >
           <Filter />
           {isLoading ? <Loader /> : error ? <Error /> : <ContactList />}
-        </div>
-      </div>
+        </Paper>
+      </Paper>
     </>
   );
 };

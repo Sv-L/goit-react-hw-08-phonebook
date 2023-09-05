@@ -1,33 +1,13 @@
-import { useState } from 'react';
-import css from './ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
 import { getContacts } from 'redux/contacts/selectors';
 import { addContsct } from 'redux/contacts/operations';
+import { TextField, Button, Box, Typography, Paper } from '@mui/material';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
-
-  const handleInputChange = e => {
-    const name = e.currentTarget.name;
-    const value = e.currentTarget.value;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        return;
-    }
-  };
 
   const checkNewName = name => {
     if (contacts) {
@@ -40,56 +20,90 @@ const ContactForm = () => {
       return false;
     }
   };
-
-  const handleSubmitForm = async e => {
-    e.preventDefault();
-    if (!checkNewName(name)) {
-      const newContact = { name, number };
-      await dispatch(addContsct(newContact));
-      reset();
-    } else {
-      Notify.failure(`${name} is already in contacts.`);
-    }
-    document.activeElement.blur();
-  };
-
-  const reset = () => {
-    setName('');
-    setNumber('');
-  };
-
   return (
-    <form className={css.form} onSubmit={handleSubmitForm}>
-      <label className={css.label}>
-        Name
-        <input
-          className={css.input}
-          type="text"
-          name="name"
-          value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          onChange={handleInputChange}
-        />{' '}
-      </label>
-      <label className={css.label}>
-        Number
-        <input
-          className={css.input}
-          type="tel"
-          name="number"
-          value={number}
-          pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          onChange={handleInputChange}
-        />
-      </label>
-      <button className={css['add-btn']} type="submit">
-        Add contact
-      </button>
-    </form>
+    <>
+      <Paper
+        elevation={16}
+        sx={{
+          margin: '0 auto',
+          padding: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Typography>New contact</Typography>
+          <Formik
+            initialValues={{ name: '', number: '' }}
+            validate={values => {
+              const errors = {};
+              if (!values.name) {
+                errors.name = 'Name is required';
+              } else if (
+                !/^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/.test(
+                  values.name
+                )
+              ) {
+                errors.name =
+                  'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore dArtagnan';
+              }
+              if (!values.number) {
+                errors.number = 'Number is required';
+              } else if (
+                !/\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}/.test(
+                  values.number
+                )
+              ) {
+                errors.number =
+                  'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +';
+              }
+              return errors;
+            }}
+            onSubmit={async ({ name, number }, { resetForm }) => {
+              if (!checkNewName(name)) {
+                const newContact = { name, number };
+                await dispatch(addContsct(newContact));
+              } else {
+                Notify.failure(`${name} is already in contacts.`);
+              }
+              document.activeElement.blur();
+              resetForm();
+            }}
+          >
+            <Form>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Field
+                  as={TextField}
+                  type="text"
+                  name="name"
+                  label="Name"
+                  variant="filled"
+                  sx={{ mb: 2, mt: 2 }}
+                  required
+                />
+                <ErrorMessage name="name" component="div" />
+
+                <Field
+                  as={TextField}
+                  type="tel"
+                  name="number"
+                  label="Number"
+                  variant="filled"
+                  sx={{ mb: 2, width: '450px' }}
+                  required
+                />
+                <ErrorMessage name="number" component="div" />
+
+                <Button type="submit" variant="outlined">
+                  Add contact
+                </Button>
+              </Box>
+            </Form>
+          </Formik>
+        </Box>
+      </Paper>
+    </>
   );
 };
 

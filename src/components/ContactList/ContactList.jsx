@@ -1,10 +1,10 @@
-import css from './ContactList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter } from 'redux/filter/slice';
 import { getContacts } from 'redux/contacts/selectors';
 import { deleteContact } from 'redux/contacts/operations';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Typography, List, ListItem } from '@mui/material';
 
 const ContactList = () => {
   const contacts = useSelector(getContacts);
@@ -22,34 +22,78 @@ const ContactList = () => {
   };
 
   return filteredContacts().length > 0 ? (
-    <ul className={css['contacts-list']}>
+    <List
+      sx={{
+        padding: '20px',
+        backgroundColor: '#fff',
+        height: '350px',
+        overflow: 'auto',
+      }}
+    >
       {filteredContacts().map(({ id, name, number }) => (
-        <li className={css['contacts-item']} key={id}>
-          <p className={css['contacts-name']}>{name}</p>
-          <p className={css['contacts-number']}>{number}</p>
-          {/* <button
-            type="button"
-            className={css['delete-btn']}
-            onClick={() => dispatch(deleteContact(id))}
+        <ListItem
+          key={id}
+          sx={{
+            width: '600px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '8px',
+            border: '1px solid gray',
+            borderRadius: '3px',
+            padding: '5px',
+          }}
+        >
+          <Typography
+            sx={{
+              width: '200px',
+              overflow: 'hidden',
+            }}
           >
-            X
-          </button> */}
+            {name}
+          </Typography>
+          <Typography
+            sx={{
+              width: '200px',
+              overflow: 'hidden',
+            }}
+          >
+            {number}
+          </Typography>
           <IconButton
             aria-label="delete"
-            color="secondary"
+            color="primary"
             onClick={() => dispatch(deleteContact(id))}
           >
             <DeleteIcon />
           </IconButton>
-        </li>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   ) : filter !== '' ? (
-    <p className={css['contacts-text']}>
+    <Typography
+      sx={{
+        width: '350px',
+        textAlign: 'center',
+        padding: '20px',
+        backgroundColor: '#fff',
+        height: '350px',
+      }}
+    >
       There are no saved contacts with this name.
-    </p>
+    </Typography>
   ) : (
-    <p className={css['contacts-text']}>There are no contacts.</p>
+    <Typography
+      sx={{
+        width: '350px',
+        textAlign: 'center',
+        padding: '20px',
+        backgroundColor: '#fff',
+        height: '350px',
+      }}
+    >
+      There are no contacts.
+    </Typography>
   );
 };
 
