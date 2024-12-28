@@ -9,7 +9,7 @@ const NavigationBar = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <Box mb={4}>
+    <Box sx={{ mb: 4 }}>
       <AppBar position="static">
         <Toolbar>
           <RecentActors sx={{ fontSize: 40 }} />

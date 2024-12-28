@@ -19,34 +19,32 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Paper
+      elevation={16}
+      sx={{
+        padding: '20px',
+        display: 'flex',
+        gap: '20px',
+        justifyContent: 'center',
+        alignItems: 'start',
+      }}
+    >
+      <ContactForm />
       <Paper
         elevation={16}
         sx={{
-          margin: '0 auto',
+          margin: '0',
           padding: '20px',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'start',
+          alignItems: 'center',
         }}
       >
-        <ContactForm />
-        <Paper
-          elevation={16}
-          sx={{
-            margin: '0 auto',
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Filter />
-          {isLoading ? <Loader /> : error ? <Error /> : <ContactList />}
-        </Paper>
+        <Filter />
+        {isLoading ? <Loader /> : error ? <Error /> : <ContactList />}
       </Paper>
-    </>
+    </Paper>
   );
 };
 

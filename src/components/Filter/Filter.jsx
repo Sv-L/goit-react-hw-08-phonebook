@@ -18,7 +18,7 @@ const Filter = () => {
       </InputLabel>
       <OutlinedInput
         sx={{
-          width: '600px',
+          width: '500px',
           backgroundColor: '#fff',
           marginBottom: '15px',
           marginTop: '10px',

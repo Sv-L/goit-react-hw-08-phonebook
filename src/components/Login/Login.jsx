@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { Box, TextField, Button, Paper } from '@mui/material';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import KeyIcon from '@mui/icons-material/Key';
+import { isLoading } from 'redux/auth/selectors';
+import { Oval } from 'react-loader-spinner';
+import { ClientRequest } from 'stream-http';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const loading = useSelector(isLoading);
 
   const handleInputChange = e => {
     const name = e.currentTarget.name;
@@ -46,6 +50,7 @@ const Login = () => {
           margin: '0 auto',
           padding: '20px',
           width: '400px',
+          height: '250px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -88,14 +93,37 @@ const Login = () => {
                 required
               />
             </Box>
-            <Button
-              type="submit"
-              variant="contained"
-              size="large"
-              sx={{ marginTop: '20px' }}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: '0 auto',
+                minHeight: '50',
+                width: '400',
+              }}
             >
-              sing in
-            </Button>
+              {loading ? (
+                <Oval
+                  visible={true}
+                  height="20"
+                  width="20"
+                  color="#4fa94d"
+                  ariaLabel="oval-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  sx={{ marginTop: '20px' }}
+                >
+                  sing in
+                </Button>
+              )}
+            </Box>
           </Box>
         </form>
       </Paper>

@@ -25,12 +25,12 @@ const ContactForm = () => {
       <Paper
         elevation={16}
         sx={{
-          margin: '0 auto',
+          margin: '0',
           padding: '20px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: '490px',
+          width: '500px',
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>

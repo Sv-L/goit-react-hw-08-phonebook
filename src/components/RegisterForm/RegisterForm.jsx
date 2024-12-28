@@ -39,17 +39,21 @@ const RegisterForm = () => {
 
   const handleSubmitForm = async e => {
     e.preventDefault();
+    const user = {
+      name: name,
+      email: email,
+      password: password,
+    };
 
-    console.log({ name, email, password });
-    dispatch(register({ name, email, password }));
-    reset();
+    dispatch(register(user));
+    // reset();
   };
 
-  const reset = () => {
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
+  // const reset = () => {
+  //   setName('');
+  //   setEmail('');
+  //   setPassword('');
+  // };
 
   return (
     <>
@@ -74,6 +78,7 @@ const RegisterForm = () => {
               variant="standard"
               type="text"
               name="name"
+              onChange={handleInputChange}
               required
             />
           </Box>
